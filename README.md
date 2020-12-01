@@ -169,6 +169,7 @@ A API deve ser implementada considerando as seguintes tecnologias:
 
 * Validar permisses de acesso - [Pŕe/Post Authorize](http://websystique.com/spring-security/spring-security-4-method-security-using-preauthorize-postauthorize-secured-el/)
 
+* [JSON Web Token](https://jwt.io/)
 ## Entrega
 
-Enviar solução via GitHub (sugerido Fork neste projeto) e enviar para o email: jcarvalho *arroba* idealit *dot* com *dot* br.
+Enviar solução via GitHub (sugerido Fork neste projeto) e enviar para o email: adail.dux *arroba* gmail *dot* com
