@@ -1,6 +1,6 @@
 package br.com.firewarning.model;
 
-import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,48 +9,46 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name = "incidente")
-public class Incidente implements Serializable {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
+public class Incidente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
-	
-	private String nivel;
-	
+	private int id;
+
+	@NotNull
 	private String comentario;
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "empresa_id")
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	private Empresa empresa;
+	
+	private Date data;
 	
 	private String status;
 	
-	//@ManyToOne(fetch = FetchType.EAGER)
-	//@JoinColumn(name = "empresa_id" )
-	
-	private Empresa empresa;
+	private Date dataResolucao;
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getNivel() {
-		return nivel;
+	
+
+	public Date getData() {
+		return data;
 	}
 
-	public void setNivel(String nivel) {
-		this.nivel = nivel;
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	public String getStatus() {
@@ -61,6 +59,14 @@ public class Incidente implements Serializable {
 		this.status = status;
 	}
 
+	public Date getDataResolucao() {
+		return dataResolucao;
+	}
+
+	public void setDataResolucao(Date dataResolucao) {
+		this.dataResolucao = dataResolucao;
+	}
+
 	public String getComentario() {
 		return comentario;
 	}
@@ -68,6 +74,13 @@ public class Incidente implements Serializable {
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}
-	
-	
+
+	public Empresa  getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+
 }
